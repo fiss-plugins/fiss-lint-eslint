@@ -1,0 +1,29 @@
+{
+  "name": "fiss-lint-eslint",
+  "version": "1.0.0",
+  "description": "a linter of fiss based on eslint",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhangyihua/fiss-lint-eslint.git"
+  },
+  "keywords": [
+    "fiss-lint-eslint",
+    "fis",
+    "fis3",
+    "fiss",
+    "fis-lint-eslint"
+  ],
+  "author": "zhangyihua",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zhangyihua/fiss-lint-eslint/issues"
+  },
+  "homepage": "https://github.com/zhangyihua/fiss-lint-eslint#readme",
+  "dependencies": {
+    "eslint": "^2.2.0"
+  }
+}
