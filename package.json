@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zhangyihua/fiss-lint-eslint.git"
+    "url": "git+https://github.com/fiss-plugins/fiss-lint-eslint.git"
   },
   "keywords": [
     "fiss-lint-eslint",
@@ -20,9 +20,9 @@
   "author": "zhangyihua",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zhangyihua/fiss-lint-eslint/issues"
+    "url": "https://github.com/fiss-plugins/fiss-lint-eslint/issues"
   },
-  "homepage": "https://github.com/zhangyihua/fiss-lint-eslint#readme",
+  "homepage": "https://github.com/fiss-plugins/fiss-lint-eslint#readme",
   "dependencies": {
     "eslint": "^2.2.0"
   }
