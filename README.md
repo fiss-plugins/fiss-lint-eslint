@@ -73,7 +73,7 @@ fis.match('js/*.js', {
 	}
 ```
 
-规则（rules）说明：
+默认配置规则（rules）说明：
 
 - [error] 变量不通过 var 进行声明或引用未定义变量。(no-undef)
 - [warning] 不使用 eval()。(no-eval)
