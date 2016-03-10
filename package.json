@@ -25,5 +25,21 @@
   "homepage": "https://github.com/fiss-plugins/fiss-lint-eslint#readme",
   "dependencies": {
     "eslint": "^2.2.0"
+  },
+  "defconf": {
+    "envs": ["browser", "node"],
+    "useEslintrc": false,
+    "ignoreFiles": ["fis-conf.js"],
+    "rules": {
+        "no-undef": [2],
+        "no-use-before-define": [1],
+        "no-unused-vars": [1],
+        "no-eval": [1],
+        "use-isnan": [2],
+        "valid-typeof": [2],
+        "no-unreachable": [1],
+        "no-dupe-args": [1],
+        "no-dupe-keys": [1]
+    }
   }
 }

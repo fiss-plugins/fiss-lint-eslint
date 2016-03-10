@@ -13,13 +13,14 @@
 function eslintIgnore(file, conf) {
 	var ignored = [];
 
-	if (conf.ignore) {
-		if (typeof conf.ignore === 'string' || fis.util.is(conf.ignore, 'RegExp')) {
-		  ignored = [conf.ignore];
-		} else if (fis.util.is(conf.ignore, 'Array')) {
-		  ignored = conf.ignore;
+	if (conf.ignoreFiles) {
+		var ignoreFiles = conf.ignoreFiles;
+		if (typeof ignoreFiles === 'string' || fis.util.is(ignoreFiles, 'RegExp')) {
+		  ignored = [ignoreFiles];
+		} else if (fis.util.is(ignoreFiles, 'Array')) {
+		  ignored = ignoreFiles;
 		}
-		delete conf.ignore;
+		delete conf.ignoreFiles;
 	}
 	if (ignored) {
 		for (var i = 0, len = ignored.length; i < len; i++) {
@@ -28,7 +29,6 @@ function eslintIgnore(file, conf) {
 		  }
 		}
 	}
-
 	return false;
 }
 
@@ -37,13 +37,17 @@ module.exports = function(content, file, conf) {
   	return;
   }
 
+  var defConf = require('./package.json').defconf;
+  if (conf.rules) {
+  	Object.assign(defConf.rules, conf.rules);
+  	delete conf.rules;
+  }
+
+  var lastConf = Object.assign(defConf, conf);
   var CLIEngine = require("eslint").CLIEngine;
-
-  var cli = new CLIEngine(conf);
-
+  var cli = new CLIEngine(lastConf);
   var report = cli.executeOnText(content);
   var formatter = cli.getFormatter();
 
-  
   fis.log.info(file.id, formatter(report.results).replace(/\<text\>/, ''));
 };
