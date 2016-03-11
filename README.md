@@ -61,6 +61,12 @@ fis.match('js/*.js', {
 	  "envs": ["browser", "node"],
 	  "useEslintrc": false,
 	  "ignoreFiles": ["fis-conf.js"],
+	  "globals": [
+	    "__inline",
+	    "__uri",
+	    "__RESOURCE_MAP__",
+	    "fis"
+	  ],
 	  "rules": {
 	      "no-undef": [2],
 	      "no-use-before-define": [1],
@@ -74,6 +80,9 @@ fis.match('js/*.js', {
 	  }
 	}
 ```
+
+当有自定义配置时，以上默认配置存除了 `rules` 会叠加外，其他属性值均被覆盖。
+
 
 默认配置规则（rules）说明：
 

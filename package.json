@@ -24,12 +24,19 @@
   },
   "homepage": "https://github.com/fiss-plugins/fiss-lint-eslint#readme",
   "dependencies": {
-    "eslint": "^2.2.0"
+    "eslint": "^2.2.0",
+    "mixin-deep": "^1.1.3"
   },
   "defconf": {
     "envs": [
       "browser",
       "node"
+    ],
+    "globals": [
+      "__inline",
+      "__uri",
+      "__RESOURCE_MAP__",
+      "fis"
     ],
     "useEslintrc": false,
     "ignoreFiles": [

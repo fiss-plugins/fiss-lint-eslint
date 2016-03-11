@@ -33,17 +33,19 @@ function eslintIgnore(file, conf) {
 }
 
 module.exports = function(content, file, conf) {
-  if (eslintIgnore(file, conf)) {
+  var assign = require('mixin-deep');
+  var defConf = require('./package.json').defconf;
+
+  if (conf.rules) {
+  	assign(defConf.rules, conf.rules);
+  	delete conf.rules;
+  }
+  var lastConf = assign(defConf, conf);
+
+  if (eslintIgnore(file, lastConf)) {
   	return;
   }
 
-  var defConf = require('./package.json').defconf;
-  if (conf.rules) {
-  	Object.assign(defConf.rules, conf.rules);
-  	delete conf.rules;
-  }
-
-  var lastConf = Object.assign(defConf, conf);
   var CLIEngine = require("eslint").CLIEngine;
   var cli = new CLIEngine(lastConf);
   var report = cli.executeOnText(content);
