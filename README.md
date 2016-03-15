@@ -32,7 +32,7 @@
 
 var eslintConf = {
 	ignoreFiles: ['js/lib/**.js', 'js-conf.js'],
-	env: ['browser', 'node'],
+	envs: ['browser', 'node'],
 	globals: ['$'],
 	rules: {
 		"semi": [1],
@@ -81,20 +81,28 @@ fis.match('js/*.js', {
 	}
 ```
 
-当自定义配置的属性与默认配置属性相同时，除了 `rules` 会叠加外，其他属性值均被覆盖。
+
+当自定义配置的属性与默认配置属性相同时，除了 `rules` 和 `globals` 会叠加外，其他属性值均被覆盖。
 
 
 默认配置规则（rules）说明：
 
-- [error] 变量不通过 var 进行声明或引用未定义变量。(no-undef)
-- [warning] 不使用 eval()。(no-eval)
-- [warning] 避免在变量定义之前使用变量。(no-use-before-define)
-- [warning] 变量声明但未使用。(no-unused-vars)
-- [error] 判断一个数是否是NaN的时候不允许使用foo === NaN这样的操作，而是使用isNaN函数进行判断。(use-isnan)
-- [error] typeof的结果必须和一个有效的字符串进行比较，如typeof foo === 'strnig'即是不合法的字符串。(valid-typeof)
-- [warning] 不允许在return、throw、continue、break等中断语句之后出现代码。(no-unreachable)
-- [warning] 方法的参数中不允许有重复值。(no-dupe-args)
-- [warning] 定义对象时不允许有重复的键。(no-dupe-keys)
+- [no-undef] 变量不通过 var 进行声明或引用未定义变量。
+- [no-eval] 不使用 eval()。
+- [no-use-befor-define] 避免在变量定义之前使用变量。
+- [no-unused-vars] 变量声明但未使用。
+- [use-isnan] 判断一个数是否是NaN的时候不允许使用foo === NaN这样的操作，而是使用isNaN函数进行判断。
+- [valid-typeof] typeof的结果必须和一个有效的字符串进行比较，如typeof foo === 'strnig'即是不合法的字符串。
+- [no-unreachable] 不允许在return、throw、continue、break等中断语句之后出现代码。
+- [no-dupe-args] 方法的参数中不允许有重复值。
+- [no-dupe-keys] 定义对象时不允许有重复的键。
+
+
+规则错误级别说明：
+
+0 ：关闭当前规则
+1 ：warning
+2 ：error
 
 
 更多规则请参见 [eslint rules](http://eslint.org/docs/rules/)。

@@ -32,9 +32,37 @@ function eslintIgnore(file, conf) {
 	return false;
 }
 
+/**
+ * make array value unique
+ * @param  {Array} arr A array which would be checked
+ * @return {Array}     A array which value is unique
+ */
+function arrUniq(arr) {
+	var tmpArr = [],
+		 tmpObj = {},
+		 tmp;
+	for(var i=0; i< arr.length; i++) {
+		tmp = arr[i];
+		if (!tmpObj[tmp]) {
+			tmpArr.push(tmp);
+			tmpObj[tmp] = true;
+		}
+	}
+	return tmpArr;
+}
+
+
 module.exports = function(content, file, conf) {
   var assign = require('mixin-deep');
   var defConf = require('./package.json').defconf;
+  var globals = defConf.globals;
+
+
+  if (conf.globals) {
+  	 globals = globals.concat(conf.globals);
+  	 conf.globals = arrUniq(globals);
+  	 delete defConf.globals;
+  }
 
   if (conf.rules) {
   	assign(defConf.rules, conf.rules);
