@@ -101,7 +101,9 @@ fis.match('js/*.js', {
 规则错误级别说明：
 
 0 ：关闭当前规则
+
 1 ：warning
+
 2 ：error
 
 
