@@ -77,7 +77,12 @@ module.exports = function(content, file, conf) {
   var CLIEngine = require("eslint").CLIEngine;
   var cli = new CLIEngine(lastConf);
   var report = cli.executeOnText(content);
-  var formatter = cli.getFormatter();
 
-  fis.log.info(file.id, formatter(report.results).replace(/\<text\>/, ''));
+  if (report.errorCount || report.warningCount) {
+  	var formatter = cli.getFormatter();
+  	fis.log.info(file.id, ' fail!'.red,formatter(report.results).replace(/\<text\>/, ''));
+  	return;
+  }
+
+  fis.log.info(file.id, ' pass!'.green);
 };
