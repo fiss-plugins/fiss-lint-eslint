@@ -51,6 +51,62 @@ function arrUniq(arr) {
 	return tmpArr;
 }
 
+/**
+ * formatter
+ * @param  {Array} results The result of linter
+ * @example
+ * resultes = [ {
+ *  filePath: '<text>',
+    messages: [ {
+    	ruleId: 'no-undef',
+    	severity: 2,
+    	message: '\'b\' is not defined.',
+    	line: 7,
+    	column: 8,
+    	nodeType: 'Identifier',
+    	source: '\ta = a+b;'
+    } ],
+    errorCount: 1,
+    warningCount: 0
+    } ]
+ * @return {String}         The result message
+ * @example
+ *    7:8  error  'b' is not defined.  no-undef
+
+	  8:2  error  'wlskd' is not defined.  no-undef
+
+	  2 problem  (2 errors, 0 warnings)
+ */
+function formatter(results) {
+    if (!results) {
+        throw new Error('Type Error: is an invalid results!');
+    }
+    var msg = '';
+    results = results[0];
+
+    var err = results.errorCount,
+    	warn = results.warningCount;
+
+    var total = err + warn;
+    var messages = results.messages;
+
+    messages.forEach(function(msgItem) {
+        var ruleId = msgItem.ruleId,
+            line = msgItem.line,
+            col = msgItem.column,
+            desc = msgItem.message,
+            severity = msgItem.severity;
+        var type = severity == 1 ? 'warning'.yellow : 'error'.red; // error type
+
+        // 7:8  error  'b' is not defined  no-undef
+        msg += '\n  ' + line + ':' + col + '  ' + type + '  ' + desc + '  ' + ruleId + '\n';
+    });
+
+    // 1 problem (1 error, 0 warnings)
+    var count = '\n  ' + total + ' problem  (' + err + ' errors, ' + warn +' warnings)';
+    msg += count.bold.yellow;
+    return msg;
+}
 
 module.exports = function(content, file, conf) {
   var assign = require('mixin-deep');
@@ -79,8 +135,8 @@ module.exports = function(content, file, conf) {
   var report = cli.executeOnText(content);
 
   if (report.errorCount || report.warningCount) {
-  	var formatter = cli.getFormatter();
-  	fis.log.info(file.id, ' fail!'.red,formatter(report.results).replace(/\<text\>/, ''));
+  	var msg = formatter(report.results);
+  	fis.log.info('%s  %s \n%s', file.id, 'fail!'.red, msg);
   	return;
   }
 
