@@ -2,6 +2,8 @@
 
 [![npm version](https://badge.fury.io/js/fiss-lint-eslint.svg)](https://badge.fury.io/js/fiss-lint-eslint)  [![npm](https://img.shields.io/npm/dt/fiss-lint-eslint.svg)](http://npm-stat.com/charts.html?package=fiss-lint-eslint&author=zhangyihua&from=2016-01-01&to=2116-01-24)
 
+移步至 [fis3-lint-eslint](https://github.com/fiss-scaffold/fis3-lint-eslint)
+
 基于 [eslint](http://eslint.org/) 的 fiss javascript linter。由于 fiss 基于 fis3 拓展，fis-conf.js 以及插件使用等都需遵循 fis3 规则。
 
 ----
